@@ -1,5 +1,8 @@
 # ltreb npp file
-
+require(plyr)
+require(dplyr)
+require(tidyr)
+require(ggplot2)
 
 # import ltreb data
 ltreb.dbh <- read.csv("./data/dbh_ltreb_2017.csv")
@@ -7,7 +10,7 @@ ltreb.dbh <- read.csv("./data/dbh_ltreb_2017.csv")
 allo <- read.csv("./data/umbs_allometry.csv")
 
 #plot rgr data
-rgr.ltreb <- read.csv("plot_rgr_ltreb.csv")
+rgr.ltreb <- read.csv("./data/plot_rgr_ltreb_jeff_edit.csv")
 
 
 # merge to get allometries
@@ -33,6 +36,9 @@ df %>%
 plot.npp.ltreb <- data.frame(plot.npp.ltreb)
 
 plot.npp.ltreb$anpp.c.ha <- plot.npp.ltreb$anpp * 5
+
+#write output file
+write.csv(plot.npp.ltreb, "./data/ltreb_npp_output.csv")
 
 
 #write.csv(plot.npp, "laura_2018_plot_npp.csv")
