@@ -5,7 +5,7 @@ require(tidyverse)
 require(ggplot2)
 
 ####
-df <- read.csv("hickey_reu_annotated.csv")
+df <- read.csv("./data/hickey_reu_annotated.csv")
 
 df %>%
   group_by(stand, status) %>%

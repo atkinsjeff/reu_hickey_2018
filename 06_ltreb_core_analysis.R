@@ -27,8 +27,9 @@ ltreb.core$anpp <- ltreb.core$bio17 - ltreb.core$bio16
 
 #RGR
 ltreb.core$rgr <- ltreb.core$anpp / ltreb.core$bio17
-
-df <- ltreb.core[!is.na(ltreb.core$rgr),]
+#removes na
+#df <- ltreb.core[!is.na(ltreb.core$rgr),]
+df <- ltreb.core
 #sums
 df %>%
   group_by(plot, species) %>%
@@ -39,4 +40,4 @@ plot.rgr.ltreb <- data.frame(plot.rgr.ltreb)
 
 ######
 
-write.csv(plot.rgr.ltreb, "plot_rgr_ltreb.csv")
+write.csv(plot.rgr.ltreb, "./data/plot_rgr_ltreb.csv")
