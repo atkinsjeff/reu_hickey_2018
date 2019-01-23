@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# pcl processing script\n#this script, thanks in part to the indomitable Ben Bond-Lamberty, error checks which files have missing lines.\nrequire(plyr)\nrequire(dplyr)\nrequire(tidyverse)\n\n\n# require(forestr)\n# setwd(\"./data/pcl\")\n# \n# files <- list.files(pattern = \"*.CSV\", full.names = TRUE)\n# \n# for(i in seq_along(files)) {\n#   filedata <- readLines(files[i])\n#   lines_to_skip <- min(which(filedata != \"\")) - 1\n#   cat(i, files[i], lines_to_skip, \"\\n\")\n#   x <- read.csv(files[i], skip = lines_to_skip)\n# }\n# \n# setwd(\"c:/github/reu_hickey_2018/\")\n\n#### \ndata_dir <- (\"./data/kreider\")\nprocess_multi_pcl(data_dir, marker.spacing = 10, max.vai = 8)\n\n# collating data output\noutput_directory <- \"./output/output\"\n\n#\nlibrary(dplyr)\nlibrary(readr)\ndf <- list.files(path = output_directory, full.names = TRUE) %>%\n  lapply(read_csv) %>%\n  bind_rows\n\ndf <- data.frame(df)\nwrite.csv(df, \"hickey_reu.CSV\")\n####\ndf <- read.csv(\"hickey_reu_annotated.csv\")\n\ndf %>%\n  group_by(plot) %>%\n  summarise_all(mean) -> df2\n\ndf2 <- data.frame(df2)\n  \n\n\n",
+    "created" : 1533994888898.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4278721235",
+    "id" : "E038498A",
+    "lastKnownWriteTime" : 1541005021,
+    "last_content_update" : 1541005021161,
+    "path" : "C:/github/reu_hickey_2018/02_pcl_processing.R",
+    "project_path" : "02_pcl_processing.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

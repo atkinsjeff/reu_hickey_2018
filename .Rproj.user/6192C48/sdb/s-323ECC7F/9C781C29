@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#03_datascript\nrequire(plyr)\nrequire(dplyr)\nrequire(tidyverse)\nrequire(ggplot2)\n\n####\ndf <- read.csv(\"hickey_reu_annotated.csv\")\n\ndf %>%\n  group_by(stand, status) %>%\n  summarise_all(mean) -> df2\n\ndf2 <- data.frame(df2)\n\nggplot(df2, aes(x = age, y = clumping.index, color = status))+\n  geom_point()+\n  geom_smooth(method = \"lm\")\n\nlm.rugosity <- lm(rugosity ~ age, data = df2)\n  \nsummary(lm.rugosity)\n  \n  \n\nrequire(randomForest)\n\n\nlaura.fit <- randomForest(status * as.factor(age) ~  mean.height +\theight.2 + mean.height.var +\tmean.height.rms +\tmode.el +\tmax.el + mode.2 + max.can.ht\t+ mean.max.ht +\tmean.vai +\tmean.peak.vai +\tdeep.gap.fraction + porosity\t+\trugosity +\n                            top.rugosity + sky.fraction\t+ rumple +\tclumping.index +\tenl,\n                         data = df2,\n                         importance = TRUE,\n                         ntree = 2000)\n#model fit\nlaura.fit\n\n# Importance of each predictor.\nprint(importance((laura.fit)) )\n\n# This plots eveything\nvarImpPlot(laura.fit)\n\n# View the forest results.\n\n\n\n\n",
+    "created" : 1541002160824.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1646521357",
+    "id" : "9C781C29",
+    "lastKnownWriteTime" : 1541005015,
+    "last_content_update" : 1541005015173,
+    "path" : "C:/github/reu_hickey_2018/04_structural_data.R",
+    "project_path" : "04_structural_data.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
