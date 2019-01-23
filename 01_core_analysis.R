@@ -75,6 +75,8 @@ rpl.npp %>%
 
 
 
+write.csv(plot.rgr, "plot_rgr.csv")
+
 plot.npp <- data.frame(plot.npp)
 
 plot.rgr <- data.frame(plot.rgr)
