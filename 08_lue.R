@@ -21,19 +21,26 @@ light <- read.csv("./data/hickey_light_data.csv")
 light$plot <- gsub("-", "_", light$plot)
 light$plot <- as.factor(light$plot)
 light$fpar <- 1 - (light$Average.Below.PAR / light$Average.Above.PAR)
+light$fapar <- light$Average.Above.PAR  - light$Average.Below.PAR 
 
 #merging light
 light %>%
-  select(plot, fpar) -> y
+  select(plot, fpar, fapar) -> y
 
 #merge
 df <- merge(npp.csc, y, all.x = TRUE)
 
+df$lue <- df$anpp.c.ha/df$fapar
+
+#write.csv(df, "./data/lue_combined_data_20190124.csv")
 #make lue
-df$lue <- 
 x11()
-ggplot(df, aes(x = rugosity, y = anpp.c.ha, color = stand))+
-  geom_point()
+ggplot(df, aes(x = age, y = rugosity, color = status))+
+  geom_point(size = 2)+
+  xlab("AGE")+
+  #xlab("age (years)")+
+  geom_smooth(method = "lm")+
+  ylab(expression(R[c]))
 
 
 

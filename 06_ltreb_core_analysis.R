@@ -12,6 +12,8 @@ ltreb.core <- read.csv("./data/ltreb_tree_core.csv")
 #get 201 dbh
 ltreb.core$dbh16 <- ltreb.core$dbh17 - (( (ltreb.core$growth5mm * 0.1) * 2) /5)
 
+allo <- read.csv("./data/umbs_allometry.csv")
+
 # remote the na values
 #ltreb.core <- na.omit(ltreb.core)
 
@@ -40,4 +42,4 @@ plot.rgr.ltreb <- data.frame(plot.rgr.ltreb)
 
 ######
 
-write.csv(plot.rgr.ltreb, "./data/plot_rgr_ltreb.csv")
+#write.csv(plot.rgr.ltreb, "./data/plot_rgr_ltreb.csv")
